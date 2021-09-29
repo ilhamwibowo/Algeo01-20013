@@ -70,13 +70,13 @@ public class matriks {
         return (this.kolom == this.baris);
     }
 
-    public void kaliBaris(int r, int val){
+    public void kaliBaris(int r, double val){
         if(r < 0 || r >= baris){
             System.out.println("Tidak valid.");
         }
         else {
             for(int i = 0; i < this.kolom; i++){
-                this.data[r1][i] *= a;
+                this.data[r][i] *= val;
             }
         }
     }
@@ -152,7 +152,7 @@ public class matriks {
                 for(j=k+1; j < baris; j++){
                     if (!this.isRowZero(j)){
                         double val = -1 * this.data[j][idxFirstCoef] / firstCoef;
-                        this.plusBaris(j, val, k)
+                        this.plusBaris(j, val, k);
                     }
                 }
             }
@@ -173,9 +173,9 @@ public class matriks {
             if (!this.isRowZero(i)){
                 int idxFirstCoef = this. getFirstCoef(i);
                 for (j = i - 1; j >= 0; j--){
-                    if (!this.isRowZero(j){
+                    if (!this.isRowZero(j)) {
                         double val = -1 * this.data[j][idxFirstCoef];
-                        this.plusBaris(j, pengali, i);
+                        this.plusBaris(j, val, i);
                     }
                 }
             }
