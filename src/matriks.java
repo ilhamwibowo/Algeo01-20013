@@ -23,12 +23,35 @@ public class matriks {
         this.data = dat;
     }
 
+    
+    
+    /* ********** SELEKTOR ********** */
     public int getIdxbaris(){
         return this.baris;
     }
-
+    
     public int getIdxkolom(){
         return this.kolom;
+    }
+    
+    public int getFirstIdxBrs(matriks M) {
+        return 0;
+    }
+
+    public int getFirstIdxKol(matriks M) {
+        return 0;
+    }
+
+    public int getLastIdxBrs(matriks M) {
+        return M.baris - 1;
+    }
+
+    public int getLastIdxKol(matriks M) {
+        return M.baris - 1;
+    }
+
+    public int ELMT(matriks M) {
+        return (M.baris * M.kolom);
     }
 
     public void readMatrix () {
