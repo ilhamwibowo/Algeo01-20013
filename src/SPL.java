@@ -71,7 +71,7 @@ public class SPL {
             B.data[i][0] = M.data[i][n];
         }
 
-        double detA = cofacMat(A);
+        double detA = determinan_kofaktor(A);
 
         if (detA != 0) {
             double[] x = new double[n];
@@ -84,7 +84,7 @@ public class SPL {
                     beatles.data[i][j] = B.data[i][0];
                 }
 
-                x[j] = beatles.cofacMat(beatles) / detA;
+                x[j] = beatles.determinan_kofaktor(beatles) / detA;
             }
             // output
             for (int i = 0; i < n; i++) {
