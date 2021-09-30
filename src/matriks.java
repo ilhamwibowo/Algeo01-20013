@@ -39,6 +39,7 @@ public class matriks {
             }
         }
     }
+    
     public void displayMatrix() {
         int i,j;
         for (i = 0;i< this.baris;i++) {
@@ -48,6 +49,7 @@ public class matriks {
             System.out.println();
         } 
     }
+
     public void swapRow(int r1, int r2) {
         int k;
         if (r1 < 0 || r1 >= baris){
@@ -138,18 +140,18 @@ public class matriks {
         return out;
     }
 
-    static matriks cofacMat(double[][] matrix) {
+    public static matriks matriksKofaktor(matriks matrix) {
         int i,j;
         matriks cofacMat = minorMatrix(matrix);
-        for (i = 0; i < matrix.length; i++) {
-            for (j = 0; j < matrix[0].length;j++) {
+        for (i = 0; i < matrix.baris; i++) {
+            for (j = 0; j < matrix.kolom;j++) {
                 if (i % 2 == 0) {
                     if (j % 2 == 1) {
-                        data[i][j] *= -1;
+                        matrix.data[i][j] *= -1;
                     }
                 } else {
                     if (j % 2 == 0) {
-                        data[i][j] *= -1;
+                        matrix.data[i][j] *= -1;
                     }
                 }
             }
@@ -157,36 +159,64 @@ public class matriks {
         return cofacMat;
     }
     
-    static float[][] minorMatrix (float[][] matrix) {
+    public static matriks minorMatrix (matriks matrix) {
         int i,j;
-        float[][] minorMatrix = new float[matrix.length][matrix[0].length];
-        for (i = 0; i < matrix.length; i++ ) {
-            for (j = 0; j < matrix[0].length; j++ ) {
-                minorMatrix[i][j] = countDetCof(minorMat(matrix, i, j));
+        matriks minorMatrix = new matriks(matrix.baris,matrix.kolom);
+        for (i = 0; i < matrix.baris; i++ ) {
+            for (j = 0; j < matrix.kolom; j++ ) {
+                minorMatrix.data[i][j] = determinan_kofaktor(minorMat(matrix, i, j));
             }
         }
         return minorMatrix;
     }
-    
+        //MENENTUKAN MATRIKS MINOR DARI MATRIX[I][J]
+    public static matriks minorMat (matriks matrix, int i, int j) {
+        int ii,jj;
+        int rowIdx = 0;
+        int colIdx = 0;
+        matriks matMinor = new matriks(matrix.baris-1,matrix.kolom-1);
+
+        for (ii = 0; ii < matrix.baris; ii++) {
+            for (jj = 0; jj < matrix.kolom;jj++) {
+                if (ii == i || jj == j) {
+                    continue;
+                } else {
+                    matMinor.data[rowIdx][colIdx] = matrix.data[ii][jj];
+                    colIdx += 1; 
+                    if (colIdx == matMinor.kolom) {
+                        colIdx = 0;
+                    }
+                }
+            }
+            if (ii != i) {
+                rowIdx += 1;
+                if (rowIdx == matMinor.baris) {
+                    rowIdx = 0;
+                } 
+            }
+
+        }
+    return matMinor;
+}
+
     //FUNGSI TRANSPOSE matriks 
-    static float[][] transpose(float[][] matrix) {
+    public static matriks transpose(matriks matrix) {
         int i,j;
-        float[][] transMat = new float[matrix[0].length][matrix.length];
-        for(i = 0; i < transMat.length; i++) {
-            for (j = 0; j < transMat[0].length;j++ ) {
-                transMat[i][j] = matrix[j][i];
+        matriks transMat = new matriks(matrix.baris,matrix.kolom);
+        for(i = 0; i < transMat.baris; i++) {
+            for (j = 0; j < transMat.kolom;j++ ) {
+                transMat.data[i][j] = matrix.data[j][i];
             }
         }
         return transMat;
     }
     
     //MENCARI ADJOINT matriks
-    static float[][] adjoint(double[][] matrix) {
-        float[][] adjMat = transpose(cofacMat(matrix));
+    public static matriks adjoint(matriks matrix) {
+        matriks adjMat = transpose(matriksKofaktor(matrix));
         return adjMat;
     }
     
-    }
 
     public void plusbaris(int r1, double val, int r2) {
         //Membuat r1 = r1 + a * r2
@@ -324,6 +354,7 @@ public class matriks {
             }
         }
     }
+    
     public static boolean balikanGJ(matriks m1, matriks minv) {
         // jika gagal, matriks tetap sama
         matriks M = copyMatrix(m1);
@@ -355,9 +386,9 @@ public class matriks {
     }
     public boolean balikanAdjoin(matriks m1, matriks m2) {
         copyMatrix(m1, m2);
-        double det = cofacMat(m2);
+        double det = determinan_kofaktor(m2);
         if (det != 0) {
-            m2.adjoint(m2);
+            m2 = adjoint(m2);
             m2.kaliMatriks(1/det);
             return true;
         } else {
