@@ -6,7 +6,7 @@ public class SPL {
     static Scanner scanner = new Scanner(System.in);
 
     public static void SPLInvers(String val) {
-        System.out.print("Masukan m : ");
+        System.out.print("Masukan m: ");
         int n = scanner.nextInt();
         matriks M = new matriks(n, n + 1);
 
@@ -22,21 +22,21 @@ public class SPL {
 
         matriks A = new matriks(n, n);
         for (int i = 0; i <= A.getLastIdxBrs(A); i++) {
-            for (int j = 0; j <= A.getLastIdxKol(A); j++) {
+            for (int j = 0; j <= A.kolom; j++) {
                 A.data[i][j] = m1.data[i][j];
             }
         }
 
         matriks B = new matriks(n, 1);
-        for (int i = 0; i <= B.getLastIdxBrs(B); i++) {
+        for (int i = 0; i <= B.baris; i++) {
             B.data[i][0] = m1.data[i][n];
         }
 
-        // OUTPUT
+
         matriks inverted = new matriks(n, n);
         if (matriks.balikanGJ(A, inverted)) {
-            matriks X = matriks.kaliMatriks(inverted, B); // PROSES SEBELUM OUTPUT
-
+            matriks X = matriks.kaliMatriks(inverted, B); 
+            // output
             for (int i = 0; i <= X.getLastIdxBrs(X); i++) {
                 System.out.println(val + (i + 1) + " = " + X.data[i][0]);
             }
@@ -59,7 +59,6 @@ public class SPL {
     public static void SPLCramer(matriks M, String val) {
         int n = M.baris;
 
-        // SPLIT INPUT
         matriks A = new matriks(n, n);
         for (int i = 0; i <= A.getLastIdxBrs(A); i++) {
             for (int j = 0; j <= A.getLastIdxKol(A); j++) {
@@ -72,7 +71,6 @@ public class SPL {
             B.data[i][0] = M.data[i][n];
         }
 
-        // PROSES & OUTPUT
         double detA = cofacMat(A);
 
         if (detA != 0) {
@@ -88,12 +86,12 @@ public class SPL {
 
                 x[j] = beatles.cofacMat(beatles) / detA;
             }
-
-            // OUTPUT
+            // output
             for (int i = 0; i < n; i++) {
                 System.out.println(val + (i + 1) + " = " + x[i]);
             }
-        } else {
+        } 
+        else {
             System.out.println("SPL tersebut tidak memiliki solusi");
         }
     }
