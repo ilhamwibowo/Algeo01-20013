@@ -67,6 +67,9 @@ public class Main {
                         }
             
                 captured = capture.stop();
+                if(ambil.simpanStatus()){
+                    ambil.saveExternal(captured);
+                }
                 
                 
             }
@@ -102,8 +105,9 @@ public class Main {
                         System.out.println("Tidak ada solusi");
                         }
             captured = capture.stop();
+
             
-        }
+            }
             else if (splPilih == 3) {
                 System.out.println("Sistem save dan load di sub-menu belum bisa.");
                 SPL.SPLInvers("x");
@@ -154,9 +158,34 @@ public class Main {
             }
         } 
         else if (choice == 3) {
-            System.out.println("1. Metode Eliminasi Gauss");
-            System.out.println("2. Metode Ekspansi Kofaktor");
-            int x = scan.nextInt();            
+                System.out.println("1. Metode Adjoint");
+                System.out.println("2. Metode Gauss-Jordan");
+                int x = scan.nextInt();
+                if (x == 1) {
+                    System.out.println("Masukkan ukuran matriks (NxN):");
+                    int N = scan.nextInt();
+                    matriks m = new matriks(N, N);
+                    System.out.println("Masukkan elemen matriks : ");
+                    m.readMatrix();
+                    matriks minv = new matriks(N,N);
+                    if (m.balikanAdjoin(m, minv)){
+                        System.out.println("Balikan dari matriks adalah");
+                        minv.displayMatrix();
+                    } else {
+                        System.out.println("Matriks tidak memiliki balikan!");
+                        }
+                    }
+                else {
+                    System.out.println("Masukkan ukuran matriks (NxN):");
+                    int N = scan.nextInt();
+                    matriks m = new matriks(N, N);
+                    System.out.println("Masukkan elemen matriks : ");
+                    m.readMatrix();
+                    System.out.println("Jika hasil sama, matriks tidak memiliki balikan! ");
+                    matriks minv = new matriks(N,N);
+                    matriks.balikanGJ(m, minv);
+                    minv.displayMatrix();
+                }    
         }
         else if (choice == 4) {
             System.out.println("Masukkan jumlah titik yang diinginkan : ");
@@ -180,6 +209,7 @@ public class Main {
     }
 }
 }
+
             
         
 
