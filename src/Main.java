@@ -102,7 +102,7 @@ public class Main {
             captured = capture.stop();
             }
             else if(splPilih == 3){
-
+                }
             }
             else if(splPilih == 4){
 
@@ -137,7 +137,34 @@ public class Main {
             }
         } 
         else if (choice == 3) {
-            System.out.println("Sistem masih dalam pengembangan");            
+                  
+                System.out.println("1. Metode Adjoint");
+                System.out.println("2. Metode Gauss-Jordan");
+                int x = scan.nextInt();
+                if (x == 1) {
+                    System.out.println("Masukkan ukuran matriks (NxN):");
+                    int N = scan.nextInt();
+                    matriks m = new matriks(N, N);
+                    System.out.println("Masukkan elemen matriks : ");
+                    m.readMatrix();
+                    matriks minv = new matriks(N,N);
+                    if (m.balikanAdjoin(m, minv)){
+                        System.out.println("Balikan dari matriks adalah");
+                        minv.displayMatrix();
+                    } else {
+                        System.out.println("Matriks tidak memiliki balikan!");
+                    } 
+                else {
+                    System.out.println("Masukkan ukuran matriks (NxN):");
+                    int N = scan.nextInt();
+                    matriks m = new matriks(N, N);
+                    System.out.println("Masukkan elemen matriks : ");
+                    m.readMatrix();
+                    System.out.println("Jika hasil sama, matriks tidak memiliki balikan! ");
+                    matriks minv = new matriks(N,N);
+                    matriks.balikanGJ(m, minv);
+                    minv.displayMatrix();
+                }    
         }
 
 
