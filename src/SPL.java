@@ -22,13 +22,13 @@ public class SPL {
 
         matriks A = new matriks(n, n);
         for (int i = 0; i <= A.getLastIdxBrs(A); i++) {
-            for (int j = 0; j <= A.kolom; j++) {
+            for (int j = 0; j <= A.getLastIdxKol(A); j++) {
                 A.data[i][j] = m1.data[i][j];
             }
         }
 
         matriks B = new matriks(n, 1);
-        for (int i = 0; i <= B.baris; i++) {
+        for (int i = 0; i <= B.getLastIdxBrs(B); i++) {
             B.data[i][0] = m1.data[i][n];
         }
 
@@ -71,7 +71,7 @@ public class SPL {
             B.data[i][0] = M.data[i][n];
         }
 
-        double detA = determinan_kofaktor(A);
+        double detA = A.determinan_kofaktor(A);
 
         if (detA != 0) {
             double[] x = new double[n];
