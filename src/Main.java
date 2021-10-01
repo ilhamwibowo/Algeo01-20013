@@ -8,8 +8,12 @@ import java.util.*;
 
 
 public class Main {
+<<<<<<< HEAD
+    public static void main (String[] args) {
+=======
     public static void main(String[] args) {
         outputCapturer capture = new outputCapturer();
+>>>>>>> 59cb9a867f42d5a7df05c80be9c73e8c42a86aa1
         int choice = 0;
         while (choice != 6) {
         System.out.println("MENU");        
@@ -22,6 +26,29 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         choice = scan.nextInt();
         if (choice == 1) {
+<<<<<<< HEAD
+        	System.out.println("1. Metode eliminasi Gauss");
+        	System.out.println("2. Metode eliminasi Gauss-Jordan");
+        	System.out.println("3. Metode matriks balikan");
+        	System.out.println("4. Metode kaidah Cramer");
+            int x = scan.nextInt();
+            if (x == 1) {
+                System.out.println("Sistem masih dalam pengembangan");      
+            } 
+            else if ( x == 2) {
+                System.out.println("Sistem masih dalam pengembangan");
+            }
+            else if (x == 3) {
+                System.out.println("Sistem masih dalam pengembangan");
+            }
+            else if (x == 4) {
+                System.out.println("Sistem masih dalam pengembangan");
+            } 
+            else {
+                System.out.println("Input tidak valid!");
+            }
+            
+=======
             int baris, kolom;
             matriks m;
             System.out.println("1. Metode eliminasi Gauss");
@@ -83,6 +110,7 @@ public class Main {
             else if(splPilih == 4){
 
             }
+>>>>>>> 59cb9a867f42d5a7df05c80be9c73e8c42a86aa1
         }
         else if (choice == 2) {
             System.out.println("1. Metode Eliminasi Gauss");
@@ -91,35 +119,47 @@ public class Main {
             if (x == 1) {
                 System.out.println("Masukkan ukuran matriks (matriks harus berbentuk persegi NxN): ");
                 int N = scan.nextInt();
-                float[][] mat = new float[N][N];
                 System.out.println("Masukkan elemen matriks : ");
-                matrixlib.readMatrix(mat);
+                matriks m = new matriks(N, N);
+                m.readMatrix();
                 System.out.println("Matriks eselon barisnya adalah : ");
-                matrixlib.rowEsMatrix(mat);
-                matrixlib.displayMatrix(mat);
-                System.out.println("Determinannya adalah : ");
-                System.out.print(matrixlib.countDetRow(mat) + "\n"); 
+                m.rowEsMatrix2();
+                m.displayMatrix();
+                System.out.println("Determinannya adalah : " );
+                System.out.print(matriks.determinan_gauss(m) + "\n");
+            } 
+            else if ( x == 2) {
+                System.out.println("Masukkan ukuran matriks (matriks harus berbentuk persegi NxN): ");
+                int N = scan.nextInt();
+                System.out.println("Masukkan elemen matriks : ");
+                matriks m = new matriks(N, N);
+                m.readMatrix();
+                System.out.println("Determinannya adalah : " );
+                System.out.print(matriks.determinan_kofaktor(m));
                 
-                
-
-                float[][] mat2 = matrixlib.readFileMatrix();
-                matrixlib.displayMatrix(mat2);
-            }             
+            }
         } 
         else if (choice == 3) {
             System.out.println("Sistem masih dalam pengembangan");            
         }
         else if (choice == 4) {
-            System.out.println("Sistem masih dalam pengembangan");
+            System.out.println("Masukkan jumlah titik yang diinginkan : ");
+            int N = scan.nextInt();
+            interpolasi.solusi(N);
         }
         else if (choice == 5) {
-            System.out.println("Sistem masih dalam pengembangan");
+            System.out.println("Masukkan jumlah data yang diinginkan : ");
+            int Ndat = scan.nextInt();
+            System.out.println("Masukkan jumlah variabel yang diinginkan : ");
+            int Nvar = scan.nextInt();
+            regresi.solusiRegresi(Ndat,Nvar);
         }
         else if (choice == 6) {
-            System.out.println("Selamat tinggal");
+            System.out.println("Selamat tinggal!");
         }
         else {
             System.out.println("Input tidak valid! Ulangi lagi!");
+            scan.close();
         }
     }
 
@@ -127,3 +167,4 @@ public class Main {
 
     }
 }
+
