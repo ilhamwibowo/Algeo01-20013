@@ -1,13 +1,17 @@
 package src;
 
+import java.util.Scanner;
+
 public class interpolasi {
 
     //bentuk matriks augmented dari masukan titik  
-    public static void solusi(int N, double x) {
+    public static void solusi(int N) {
+    	Scanner scan = new Scanner(System.in);
         int i,j,k;
         double num = 1;
         matriks point = new matriks(N, 2);
-        matriks m = new matriks(N, N+1);
+        matriks m = new matriks(N, N+1); //N adalah jumlah titik
+        System.out.println("Masukkan data titik yang diinginkan (contoh x1 y1) : ");
         point.readMatrix(); 
         for (i = 0; i < m.baris; i++) {
         	num = 1;
@@ -24,15 +28,17 @@ public class interpolasi {
 
     }
         m.displayMatrix();
-        
         matriks solusi = new matriks(N,1);
         solusi = solusiSPL(m,"x");
-		boolean same = matriks.isEqual(reg, solusi);
+		boolean same = matriks.isEqual(m, solusi);
 		if (same) {
 			System.out.println();
 		} else {
+			System.out.println("Masukkan nilai yang akan diestimasi : ");
+	        double x = scan.nextDouble();
 			printHasil(solusi,x);
 		}
+        
     }
 
     public static matriks solusiSPL(matriks m1, String val) {
