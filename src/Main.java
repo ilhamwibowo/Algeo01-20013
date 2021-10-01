@@ -3,16 +3,12 @@ package src;
 import java.util.Scanner;
 
 
-
 import java.util.*;
 
 
 public class Main {
 
     public static void main(String[] args) {
-        outputCapturer capture = new outputCapturer();
-        Load ambil =  new Load();
-        String captured;
         int choice = 0;
         while (choice != 6) {
         System.out.println("MENU");        
@@ -34,23 +30,13 @@ public class Main {
             int splPilih = scan.nextInt();
             
             if (splPilih == 1){
-                ambil.cekSimpan();
-                if(ambil.simpanStatus()){
-                    ambil.namaExternal();
-                }
-                ambil.cekLoad();
-                if(ambil.loadStatus()){
-                    m = ambil.bacaMatrixFile("../test/inputFile.txt"); 
-                }else{
                     System.out.print("Banyak persamaan : ");
                     baris = scan.nextInt();
                     System.out.print("Banyak variable : ");
                     kolom = scan.nextInt();
                     System.out.println("Masukkan persamaan : ");
                     m = new matriksParametrik(baris, kolom + 1);
-                }
                 m.readMatrix();
-                capture.start();
                 m.displayMatrix();
                 System.out.println("Memulai algoritma");
                     try{
@@ -65,27 +51,16 @@ public class Main {
                     } catch(noSolution n){
                         System.out.println("Tidak ada solusi");
                         }
-            captured = capture.stop(); 
             }
                 
             else if(splPilih == 2){
-                ambil.cekSimpan();
-                if(ambil.simpanStatus()){
-                    ambil.namaExternal();
-                }
-                ambil.cekLoad();
-                if(ambil.loadStatus()){
-                     m = ambil.bacaMatrixFile("../test/inputFile.txt"); 
-                }else{
                     System.out.print("Banyak persamaan : ");
                     baris = scan.nextInt();
                     System.out.print("Banyak variable : ");
                     kolom = scan.nextInt();
                     System.out.println("Masukkan persamaan : ");
                     m = new matriksParametrik(baris, kolom + 1);
-                }
                 m.readMatrix();
-                capture.start();
                 m.displayMatrix();
                     try{
                         m.reducedRowMatrix();
@@ -99,13 +74,22 @@ public class Main {
                     } catch(noSolution n){
                         System.out.println("Tidak ada solusi");
                         }
-            captured = capture.stop();
             }
             else if(splPilih == 3){
-                }
+                System.out.println("Masukkan ukuran matriks (NxN):");
+                int N = scan.nextInt();
+                matriks m1 = new matriks(N, N);
+                System.out.println("Masukkan elemen matriks : ");
+                m1.readMatrix();
+                SPL.SPLInvers(m1, "x");
             }
             else if(splPilih == 4){
-
+                System.out.println("Masukkan ukuran matriks (NxN):");
+                int N = scan.nextInt();
+                matriks m1 = new matriks(N, N);
+                System.out.println("Masukkan elemen matriks : ");
+                m1.readMatrix();
+                SPL.SPLCramer(m1, "X");
             }
 
         }
