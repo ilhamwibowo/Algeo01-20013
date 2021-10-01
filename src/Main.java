@@ -59,6 +59,9 @@ public class Main {
                         System.out.println("^ Matrix hasil eliminasi Gauss ^");
                         m.genStatus();
                         m.parametrikGauss();
+                        System.out.println("Solusi Persamaan Linier : ");
+		                String hasil = m.printhasil();
+		                System.out.println(hasil);
                     } catch(noSolution n){
                         System.out.println("Tidak ada solusi");
                         }
@@ -90,6 +93,9 @@ public class Main {
                         System.out.println("^ Matrix hasil eliminasi Gauss ^");
                         m.genStatus();
                         m.parametrikGJ();
+                        System.out.println("Solusi Persamaan Linier : ");
+		                String hasil = m.printhasil();
+		                System.out.println(hasil);
                     } catch(noSolution n){
                         System.out.println("Tidak ada solusi");
                         }
