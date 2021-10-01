@@ -2,7 +2,9 @@
 Program dapat digunakan untuk menentukan solusi dari sistem persamaan linear, determinan, matriks balikan, dan estimasi menggunakan interpolasi dan regresi linear berganda.
 
 ## How To Run
-1. Buka 
+1. Buka java IDE seperti VSCode, Eclipse
+2. Buka folder src atau bin
+3. Jalankan program
 
 
 ## Contents
