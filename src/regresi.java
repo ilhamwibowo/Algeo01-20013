@@ -5,7 +5,7 @@ import java.util.Scanner;
 import matriks;
 
 public class regresi {
-	public static void solusiRegresi (int Ndat, int Nvar, double x) {
+	public static void solusiRegresi (int Ndat, int Nvar) {
 		int i,j,k;
 		double num = 0;
 		int kol = 0;
@@ -55,6 +55,8 @@ public class regresi {
 		if (same) {
 			System.out.println();
 		} else {
+			System.out.println("Masukkan nilai yang akan diestimasi : ");
+	        double x = scan.nextDouble();
 			printHasil(solusi,x);
 		}
 		
