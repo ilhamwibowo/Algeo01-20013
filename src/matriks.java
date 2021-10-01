@@ -67,7 +67,12 @@ public class matriks {
         int i,j;
         for (i = 0;i< this.baris;i++) {
             for (j = 0;j< this.kolom;j++) {
-                System.out.print(data[i][j] + " ");
+                if (this.data[i][j] == -0.0) {
+                    System.out.print(0.0 + " ");
+                }
+                else {
+                    System.out.print(data[i][j] + " ");
+                }
             }
             System.out.println();
         } 
@@ -338,7 +343,6 @@ public class matriks {
 
     public void rowEsMatrix () {
         int i,j,k;
-        float x;
         this.sortMatrix();
         for (k = 0;k < baris - 1 ; k++) {
             //cek apakah ada baris yang depannya nol

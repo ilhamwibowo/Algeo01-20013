@@ -2,9 +2,18 @@ package src;
 
 import java.util.Scanner;
 
+import jdk.internal.jshell.tool.resources.l10n;
+
+import java.util.*;
+
 
 public class Main {
+<<<<<<< HEAD
     public static void main (String[] args) {
+=======
+    public static void main(String[] args) {
+        outputCapturer capture = new outputCapturer();
+>>>>>>> 59cb9a867f42d5a7df05c80be9c73e8c42a86aa1
         int choice = 0;
         while (choice != 6) {
         System.out.println("MENU");        
@@ -17,6 +26,7 @@ public class Main {
         Scanner scan = new Scanner(System.in);
         choice = scan.nextInt();
         if (choice == 1) {
+<<<<<<< HEAD
         	System.out.println("1. Metode eliminasi Gauss");
         	System.out.println("2. Metode eliminasi Gauss-Jordan");
         	System.out.println("3. Metode matriks balikan");
@@ -38,6 +48,69 @@ public class Main {
                 System.out.println("Input tidak valid!");
             }
             
+=======
+            int baris, kolom;
+            matriks m;
+            System.out.println("1. Metode eliminasi Gauss");
+            System.out.println("2. Metode eliminasi Gauss-Jordan");
+            System.out.println("3. Metode matriks balikan");
+            System.out.println("4. Kaidah Cramer");
+            int splPilih = scan.nextInt();
+            if (splPilih == 1){
+                if(/*external.loadStatus*/baris == 1){
+                    // M=external.bacaMatrixFile("../test/data_input/file_externalmatrix.txt"); 
+                }else{
+                    System.out.print("Banyak persamaan : ");
+                    baris = scan.nextInt();
+                    System.out.print("Banyak variable : ");
+                    kolom = scan.nextInt();
+                    System.out.println("Masukkan persamaan : ");
+                    m = new matriksParametrik(baris, kolom + 1);
+                    m.readMatrix();
+                    capture.start();
+                    m.displayMatrix();
+                    try{
+                        m.rowEsMatrix();
+                        m.displayMatrix();
+                        System.out.println("^ Matrix hasil eliminasi Gauss ^");
+                        .genStatus();
+                        m.parametrikGauss();
+                    } catch(noSolution n){
+                        System.out.println("Tidak ada solusi");
+                        }
+                    }
+                }
+            else if(splPilih == 2){
+                if(/*external.loadStatus*/baris == 1){
+                    // M=external.bacaMatrixFile("../test/data_input/file_externalmatrix.txt"); 
+                }else{
+                    System.out.print("Banyak persamaan : ");
+                    baris = scan.nextInt();
+                    System.out.print("Banyak variable : ");
+                    kolom = scan.nextInt();
+                    System.out.println("Masukkan persamaan : ");
+                    m = new matriksParametrik(baris, kolom + 1);
+                    m.readMatrix();
+                    capture.start();
+                    m.displayMatrix();
+                    try{
+                        m.reducedRowMatrix();
+                        m.displayMatrix();
+                        System.out.println("^ Matrix hasil eliminasi Gauss ^");
+                        m.genStatus();
+                        m.parametrikGJ();
+                    } catch(noSolution n){
+                        System.out.println("Tidak ada solusi");
+                        }
+
+            }
+            else if(splPilih == 3){
+
+            }
+            else if(splPilih == 4){
+
+            }
+>>>>>>> 59cb9a867f42d5a7df05c80be9c73e8c42a86aa1
         }
         else if (choice == 2) {
             System.out.println("1. Metode Eliminasi Gauss");
