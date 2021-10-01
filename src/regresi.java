@@ -108,6 +108,4 @@ public class regresi {
     	}
     	System.out.print("Hasil estimasi dari " + x + " adalah " + result);
     }
-    
-    public static boolean isEqual
 }
