@@ -6,7 +6,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Load {
-    private String fileName;
+    private String namaFile;
     private Boolean simpan;
     private Boolean load;
     private int totalbaris;
@@ -140,13 +140,13 @@ public class Load {
     public void namaExternal(){
         Scanner input=new Scanner(System.in);
         System.out.print("Masukkan nama file : ");
-        fileName="../test/"+input.nextLine()+".txt";
+        namaFile="../test/"+input.nextLine()+".txt";
     }
 
     public void saveExternal(String judul,matriks M){
         if(simpan) {
             try {
-                File file = new File(fileName);
+                File file = new File(namaFile);
                 if (!file.exists()) {
                     file.createNewFile();
                 }
@@ -172,7 +172,7 @@ public class Load {
     public void saveExternal(String s){
         if(simpan) {
             try {
-                File file = new File(fileName);
+                File file = new File(namaFile);
                 FileWriter fw = new FileWriter(file, true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter pw = new PrintWriter(bw);
