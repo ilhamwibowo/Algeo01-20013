@@ -3,7 +3,7 @@ package src;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
-
+import java.io.FileNotFoundException;
 
 public class matriks {
     public int baris;
@@ -23,8 +23,7 @@ public class matriks {
         this.data = dat;
     }
 
-    
-    
+
     /* ********** SELEKTOR ********** */
     public int getIdxbaris(){
         return this.baris;
@@ -53,7 +52,7 @@ public class matriks {
     public int ELMT(matriks M) {
         return (M.baris * M.kolom);
     }
-
+    
     public void readMatrix () {
         Scanner scan = new Scanner(System.in);
         for(int i = 0;i<this.baris;i++) {
@@ -67,17 +66,13 @@ public class matriks {
         int i,j;
         for (i = 0;i< this.baris;i++) {
             for (j = 0;j< this.kolom;j++) {
-                if (this.data[i][j] == -0.0) {
-                    System.out.print(0.0 + " ");
-                }
-                else {
-                    System.out.print(data[i][j] + " ");
-                }
+                System.out.print(data[i][j] + " ");
             }
             System.out.println();
         } 
     }
-
+    
+    
     public void swapRow(int r1, int r2) {
         int k;
         if (r1 < 0 || r1 >= baris){
@@ -99,7 +94,7 @@ public class matriks {
     public boolean isSquare() {
         return (this.kolom == this.baris);
     }
-
+    
     public static boolean IsIdentitas(matriks M) {
         boolean out = true;
         for (int i = 0; i < M.baris; i++) {
@@ -112,7 +107,31 @@ public class matriks {
         return out;
     }
 
-
+    public static boolean isEqual(matriks m1, matriks m2) {
+    	int i,j;
+    	boolean same = true;
+    	if (m1.baris != m2.baris) {
+    		same = false;
+    		return false;
+    		
+    	}
+    	else if ( m1.kolom != m2.kolom) {
+    		same = false;
+    		return false;
+    		
+    	} else {
+    		for ( i= 0; i < m1.baris;i++) {
+    			for (j = 0; j < m1.baris;j++) {
+    				if (m1.data[i][j] != m2.data[i][j]) {
+    					same = false;
+    					return false;
+    					
+    				}
+    			}
+    		}
+    	}
+		return same;
+    }
     public static matriks matrixIdentitas(int N) {
         matriks I = new matriks(N, N);
         for (int i = 0; i < N; i++)
@@ -365,6 +384,24 @@ public class matriks {
             }
         } 
     }
+    
+    public void rowEsMatrix2 () {
+        int i,j,k;
+        this.sortMatrix();
+        this.displayMatrix();
+        for (k = 0;k < baris - 1 ; k++) {
+            if (!this.isRowZero(k)) {
+                int idxFirstCoef = this.getFirstCoef(k);
+                double firstCoef = this.data[k][idxFirstCoef];
+                for(j=k+1; j < baris; j++){
+                    if (!this.isRowZero(j)){
+                        double val = -1 * this.data[j][idxFirstCoef] / firstCoef;
+                        this.plusbaris(j, val, k);
+                    }
+                }
+            }
+        }
+    }
 
     public void reducedRowMatrix () {
         int i,j;
@@ -427,7 +464,7 @@ public class matriks {
         int i,j;
         double val = 1;
         double det = 1;
-        matrix.rowEsMatrix(); // prekondisi : isquare bernilai true
+        matrix.rowEsMatrix2(); // prekondisi : isquare bernilai true
         for(i = 0; i < matrix.baris;i++) {
             for (j = 0;j < matrix.kolom;j++) {
                 if (matrix.data[i][j] == 0 && j == matrix.kolom-1){ //terdapat baris yang semua nilainya nol
@@ -482,6 +519,5 @@ public class matriks {
         return det;
 }
 
-    
     
 }

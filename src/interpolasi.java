@@ -69,7 +69,7 @@ public class interpolasi {
             return X;
         } 
         else {
-            System.out.println("SPL tersebut tidak memiliki solusi");
+            System.out.println("SPL tersebut tidak memiliki solusi" + "\n");
             return m1;
         }
         
@@ -87,7 +87,7 @@ public class interpolasi {
     		result += m.data[i][0] * num;
     		num = 1;
     	}
-    	System.out.print("Hasil estimasi dari " + x + " adalah " + result);
+    	System.out.print("Hasil estimasi dari " + x + " adalah " + result + "\n");
     }
     
 

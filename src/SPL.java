@@ -4,6 +4,7 @@ import java.util.*;
 
 public class SPL {
     static Scanner scanner = new Scanner(System.in);
+    public static matriks result;
 
     public static void SPLInvers(String val) {
         System.out.print("Masukan m: ");
@@ -22,14 +23,14 @@ public class SPL {
 
         matriks A = new matriks(n, n);
         for (int i = 0; i <= A.getLastIdxBrs(A); i++) {
-            for (int j = 0; j <= A.getLastIdxKol(A); j++) {
+            for (int j = 0; j < A.kolom; j++) {
                 A.data[i][j] = m1.data[i][j];
             }
         }
 
         matriks B = new matriks(n, 1);
-        for (int i = 0; i <= B.getLastIdxBrs(B); i++) {
-            B.data[i][0] = m1.data[i][n];
+        for (int i = 0; i < B.baris; i++) {
+            B.data[i][0] = m1.data[i][n-1];
         }
 
 
@@ -68,10 +69,10 @@ public class SPL {
 
         matriks B = new matriks(n, 1);
         for (int i = 0; i <= B.getLastIdxBrs(B); i++) {
-            B.data[i][0] = M.data[i][n];
+            B.data[i][0] = M.data[i][n-1];
         }
 
-        double detA = A.determinan_kofaktor(A);
+        double detA = matriks.determinan_kofaktor(A);
 
         if (detA != 0) {
             double[] x = new double[n];
@@ -80,11 +81,11 @@ public class SPL {
                 matriks beatles = new matriks(n, n);
                 matriks.copyMatrix(A, beatles);
 
-                for (int i = 0; i <= A.baris; i++) {
+                for (int i = 0; i < A.baris; i++) {
                     beatles.data[i][j] = B.data[i][0];
                 }
 
-                x[j] = beatles.determinan_kofaktor(beatles) / detA;
+                x[j] = matriks.determinan_kofaktor(beatles) / detA;
             }
             // output
             for (int i = 0; i < n; i++) {

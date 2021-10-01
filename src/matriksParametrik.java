@@ -63,6 +63,7 @@ public class matriksParametrik extends matriks{
             }
         }
     }
+    
 // matriks sudah dijadikan eselon baris
     public void parametrikGauss() {
         for (int i = this.baris - 1; i >= 0; i--) {
