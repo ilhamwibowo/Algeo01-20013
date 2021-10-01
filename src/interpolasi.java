@@ -27,8 +27,12 @@ public class interpolasi {
         
         matriks solusi = new matriks(N,1);
         solusi = solusiSPL(m,"x");
-        printHasil(solusi,x);
-        
+		boolean same = matriks.isEqual(reg, solusi);
+		if (same) {
+			System.out.println();
+		} else {
+			printHasil(solusi,x);
+		}
     }
 
     public static matriks solusiSPL(matriks m1, String val) {
