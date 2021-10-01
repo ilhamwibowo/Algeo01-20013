@@ -10,6 +10,7 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
+        
         outputCapturer capture = new outputCapturer();
         Load ambil =  new Load();
         String captured;
@@ -67,9 +68,7 @@ public class Main {
                         }
             
                 captured = capture.stop();
-                if(ambil.simpanStatus()){
-                    ambil.saveExternal(captured);
-                }
+                
                 
                 
             }
@@ -114,18 +113,8 @@ public class Main {
                 
             }
             else if(splPilih == 4){
-                ambil.cekSimpan();
-                if(ambil.simpanStatus()){
-                    ambil.namaExternal();
-                    capture.start();
-                    SPL.SPLCramer("x");
-                    captured = capture.stop();
-                    
+                SPL.SPLCramer("x");
                 }
-                else{
-                    SPL.SPLCramer("x");
-                }
-            }
             else{
                 System.out.println("Input tidak valid.");
             }
@@ -237,7 +226,8 @@ public class Main {
         }
     }
 }
-}   
+}
+
 
 
             
