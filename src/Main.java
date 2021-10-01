@@ -32,7 +32,6 @@ public class Main {
             System.out.println("3. Metode matriks balikan");
             System.out.println("4. Kaidah Cramer");
             int splPilih = scan.nextInt();
-            
             if (splPilih == 1){
                 ambil.cekSimpan();
                 if(ambil.simpanStatus()){
@@ -41,7 +40,8 @@ public class Main {
                 ambil.cekLoad();
                 if(ambil.loadStatus()){
                     m = ambil.bacaMatrixFile("../test/inputFile.txt"); 
-                }else{
+                }
+                else{
                     System.out.print("Banyak persamaan : ");
                     baris = scan.nextInt();
                     System.out.print("Banyak variable : ");
@@ -65,9 +65,11 @@ public class Main {
                     } catch(noSolution n){
                         System.out.println("Tidak ada solusi");
                         }
-            captured = capture.stop(); 
-            }
+            
+                captured = capture.stop();
                 
+                
+            }
             else if(splPilih == 2){
                 ambil.cekSimpan();
                 if(ambil.simpanStatus()){
@@ -100,14 +102,29 @@ public class Main {
                         System.out.println("Tidak ada solusi");
                         }
             captured = capture.stop();
-            }
-            else if(splPilih == 3){
-
+            
+        }
+            else if (splPilih == 3) {
+                System.out.println("Sistem save dan load di sub-menu belum bisa.");
+                SPL.SPLInvers("x");
+                
             }
             else if(splPilih == 4){
-
+                ambil.cekSimpan();
+                if(ambil.simpanStatus()){
+                    ambil.namaExternal();
+                    capture.start();
+                    SPL.SPLCramer("x");
+                    captured = capture.stop();
+                    
+                }
+                else{
+                    SPL.SPLCramer("x");
+                }
             }
-
+            else{
+                System.out.println("Input tidak valid.");
+            }
         }
         else if (choice == 2) {
             System.out.println("1. Metode Eliminasi Gauss");
@@ -137,10 +154,10 @@ public class Main {
             }
         } 
         else if (choice == 3) {
-            System.out.println("Sistem masih dalam pengembangan");            
+            System.out.println("1. Metode Eliminasi Gauss");
+            System.out.println("2. Metode Ekspansi Kofaktor");
+            int x = scan.nextInt();            
         }
-
-
         else if (choice == 4) {
             System.out.println("Masukkan jumlah titik yang diinginkan : ");
             int N = scan.nextInt();
@@ -161,9 +178,9 @@ public class Main {
             scan.close();
         }
     }
+}
+}
+            
+        
 
-
-
-    }
-} 
 
