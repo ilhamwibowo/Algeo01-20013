@@ -2,7 +2,7 @@ package src;
 
 import java.util.Scanner;
 
-import matriks;
+
 
 public class regresi {
 	public static void solusiRegresi (int Ndat, int Nvar) {

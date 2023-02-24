@@ -6,6 +6,7 @@ public class parametrikSPL extends matriks {
     private int countVar;
     private double[][] hasil;
     private int[] status;
+    private int dono;
 
    
 
